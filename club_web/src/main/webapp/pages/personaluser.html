@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>个人中心</title>
+  <!-- Tell the browser to be responsive to screen width -->
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+  <!-- Bootstrap 3.3.7 -->
+  <link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.min.css">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="../bower_components/font-awesome/css/font-awesome.min.css">
+  <!-- Ionicons -->
+  <link rel="stylesheet" href="../bower_components/Ionicons/css/ionicons.min.css">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="../dist/css/AdminLTE.min.css">
+  <!-- AdminLTE Skins. Choose a skin from the css/skins
+       folder instead of downloading all of them to reduce the load. -->
+  <link rel="stylesheet" href="../dist/css/skins/_all-skins.min.css">
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+  <![endif]-->
+  <!--     calendar  -->
+  <script type="text/javascript" src="../js/jquery-3.2.1.min.js"></script> 
+  <link type="text/css" href="../css/calendar.css" rel="stylesheet" />
+<script type="text/javascript" src="../js/calendar.js"></script> 
+  <!-- Google Font -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+    <script>
+
+
+        $(document).ready(function(){
+            $.ajax({
+                type:"post",
+                url:"user/login1.do",
+                dataType:"json",
+                success : function(result){
+                    if(result.iUhome != null){
+                        $("#self").html("<a href=\"pages/examples/personalcenter.html\">个人中心</a>")
+                        $("#login").html(" <div class=\"navbar-custom-menu\">\n" +
+                            "          <ul class=\"nav navbar-nav\">\n" +
+                            "            <!-- Messages: style can be found indropdown.less-->\n" +
+                            "            <li class=\"dropdown messages-menu\">\n" +
+                            "              <!-- Menu toggle button -->\n" +
+                            "              <a href=\"http://www.baidu.com\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">\n" +
+                            "                <i class=\"fa fa-envelope-o\"></i>\n" +
+                            "                <span class=\"label label-success\">"+result.Numberemail+"</span>\n" +
+                            "              </a>\n" +
+                            "              <ul class=\"dropdown-menu\">\n" +
+                            "                <li class=\"header\">You have 4 messages</li>\n" +
+                            "                <li>\n" +
+                            "                  <!-- inner menu: contains the messages -->\n" +
+                            "                  <ul class=\"menu\">\n" +
+                            "                    <li><!-- start message 点击邮箱的时候弹出来的那个Team-->\n" +
+                            "                      <a href=\"http://www.baidu.com\">\n" +
+                            "                        <div class=\"pull-left\">\n" +
+                            "                          <!-- User Image -->\n" +
+                            "                          <img src=\"dist/img/user2-160x160.jpg\" class=\"img-circle\" alt=\"User Image\">\n" +
+                            "                        </div>\n" +
+                            "                        <!-- Message title and timestamp -->\n" +
+                            "                        <h4>\n" +
+                            "                          Support Team\n" +
+                            "                          <small><i class=\"fa fa-clock-o\"></i> 5 mins</small>\n" +
+                            "                        </h4>\n" +
+                            "                        <!-- The message -->\n" +
+                            "                        <p>Why not buy a new awesome theme?</p>\n" +
+                            "                      </a>\n" +
+                            "                    </li>\n" +
+                            "                    <!-- end message -->\n" +
+                            "                  </ul>\n" +
+                            "                  <!-- /.menu -->\n" +
+                            "                </li>\n" +
+                            "                <!--\n" +
+                            "                \t查看所有的message的时候跳转\n" +
+                            "                -->\n" +
+                            "                <li class=\"footer\"><a href=\"mailbox/mailbox.html\">See All Messages</a></li>\n" +
+                            "              </ul>\n" +
+                            "            </li>\n" +
+                            "            <!-- /.messages-menu -->\n" +
+                            "            <!-- User Account Menu -->\n" +
+                            "            <li class=\"dropdown user user-menu\">\n" +
+                            "              <!-- Menu Toggle Button -->\n" +
+                            "              <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">\n" +
+                            "                <!-- The user image in the navbar-->\n" +
+                            "                <img src=\"dist/img/user2-160x160.jpg\" class=\"user-image\" alt=\"User Image\">\n" +
+                            "                <!-- hidden-xs hides the username on small devices so only the image appears. -->\n" +
+                            "                <span class=\"hidden-xs\">"+result.iUhome.bigName+"</span>\n" +
+                            "              </a>\n" +
+                            "              <ul class=\"dropdown-menu\">\n" +
+                            "                <!-- The user image in the menu -->\n" +
+                            "                <li class=\"user-header\">\n" +
+                            "                  <img src=\"dist/img/user2-160x160.jpg\" class=\"img-circle\" alt=\"User Image\">\n" +
+                            "\n" +
+                            "                  <p>\n" +
+                            "                    "+result.iUhome.bigName+" - Web Developer\n" +
+                            "                    <small>Member since Nov. 2012</small>\n" +
+                            "                  </p>\n" +
+                            "                </li>\n" +
+                            "                <!-- Menu Body -->\n" +
+                            "                <li class=\"user-body\">\n" +
+                            "                  <div class=\"row\">\n" +
+                            "                    <div class=\"col-xs-5 text-center\">\n" +
+                            "                      <a href=\"#\">关注人数:"+result.Numberfollowers+"</a>\n" +
+                            "                    </div>\n" +
+                            "                    <div class=\"col-xs-2 text-center\">\n" +
+                            "                      <a href=\"#\"></a>\n" +
+                            "                    </div>\n" +
+                            "                      <div class=\"col-xs-5 text-center\">\n" +
+                            "                          <a href=\"#\">好友人数 :"+result.Numberfriends+"</a>\n" +
+                            "                      </div>\n" +
+                            "                  </div>\n" +
+                            "                  <!-- /.row -->\n" +
+                            "                </li>\n" +
+                            "                <!-- Menu Footer-->\n" +
+                            "                <li class=\"user-footer\">\n" +
+                            "                  <div class=\"pull-left\">\n" +
+                            "                    <a href=\"#\" class=\"btn btn-default btn-flat\">锁定</a>\n" +
+                            "                  </div>\n" +
+                            "                  <div class=\"pull-right\">\n" +
+                            "                    <a href=\"#\" class=\"btn btn-default btn-flat\">注销</a>\n" +
+                            "                  </div>\n" +
+                            "                </li>\n" +
+                            "              </ul>\n" +
+                            "            </li>\n" +
+                            "          </ul>\n" +
+                            "        </div>");
+                    }
+                },
+                async:true
+            },"json");
+        })
+
+
+
+    </script>
+</head>
+<body class="hold-transition skin-blue layout-top-nav">
+<div class="wrapper">
+
+<header class="main-header">
+    <nav class="navbar navbar-static-top">
+      <div class="container">
+        <div class="navbar-header">
+          <a href="../../index2.html" class="navbar-brand"><b>湖中大社团</b>管理系统</a>
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
+            <i class="fa fa-bars"></i>
+          </button>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
+          <ul class="nav navbar-nav">
+             <li class="active"><a href="layout/top-nav.html">首页 <span class="sr-only">(current)</span></a></li>
+            <li><a href="#">日志活动</a></li>
+                 <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">加入社团 <span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+                <li><a href="#">学术研究会</a></li>
+                <li><a href="#"></a></li>
+                <li><a href="#">实践制作类</a></li>
+                <li class="divider"></li>
+                <li><a href="society.html">文体竞技类</a></li>
+                <li class="divider"></li>
+                <li><a href="#">艺术展示类</a></li>
+              </ul>
+            </li>
+            <div id="self"></div>
+          </ul>
+          <form class="navbar-form navbar-left" role="search">
+            <div class="form-group">
+              <input type="text" class="form-control" id="navbar-search-input" >
+            </div>
+          </form>
+        </div>
+        <!-- /.navbar-collapse -->
+        <!-- Navbar Right Menu -->
+          <div id="login">
+          </div>
+        <!-- /.navbar-custom-menu -->
+      </div>
+      <!-- /.container-fluid -->
+    </nav>
+  </header>
+
+        
+         <section class="content-wrapper">
+    <div class="container">
+    	
+    	<!-- Content Header (Page header) -->
+    <section class="content-header">
+      <h1>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;加入的社团信息
+      </h1>
+      <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a href="#">Examples</a></li>
+        <li class="active">User profile</li>
+      </ol>
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+
+      <div class="row">
+        <div class="col-md-3">
+
+          <!-- Profile Image -->
+          <div class="box box-primary">
+            <div class="box-body box-profile">
+              <img class="profile-user-img img-responsive img-circle" src="../dist/img/user4-128x128.jpg" alt="User profile picture">
+
+              <h3 class="profile-username text-center">足球社</h3>
+
+              <p class="text-muted text-center">热爱足球</p>
+
+              <ul class="list-group list-group-unbordered">
+                <li class="list-group-item">
+                  
+              <a href="#" class="btn btn-info btn-block"><b>所以社团活动</b></a>
+                </li>
+                <li class="list-group-item">
+                 
+              <a href="#" class="btn btn-primary btn-block"><b>社团成员</b></a>
+                <li class="list-group-item">
+                 
+              <a href="#" class="btn btn-success btn-block"><b>社团聊天室</b></a>
+                </li>
+              </ul>
+
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+
+
+<!-- Profile Image -->
+          <div class="box box-primary">
+            <div class="box-body box-profile">
+              <img class="profile-user-img img-responsive img-circle" src="../dist/img/user4-128x128.jpg" alt="User profile picture">
+
+              <h3 class="profile-username text-center">足球社</h3>
+
+              <p class="text-muted text-center">热爱足球</p>
+
+              <ul class="list-group list-group-unbordered">
+                <li class="list-group-item">
+                  
+              <a href="#" class="btn btn-info btn-block"><b>所以社团活动</b></a>
+                </li>
+                <li class="list-group-item">
+                 
+              <a href="#" class="btn btn-primary btn-block"><b>社团成员</b></a>
+                <li class="list-group-item">
+                 
+              <a href="#" class="btn btn-success btn-block"><b>社团聊天室</b></a>
+                </li>
+              </ul>
+
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+          
+          
+        <!-- Profile Image -->
+          <div class="box box-primary">
+            <div class="box-body box-profile">
+              <img class="profile-user-img img-responsive img-circle" src="../dist/img/user4-128x128.jpg" alt="User profile picture">
+
+              <h3 class="profile-username text-center">足球社</h3>
+
+              <p class="text-muted text-center">热爱足球</p>
+
+              <ul class="list-group list-group-unbordered">
+                <li class="list-group-item">
+                  
+              <a href="#" class="btn btn-info btn-block"><b>所以社团活动</b></a>
+                </li>
+                <li class="list-group-item">
+                 
+              <a href="#" class="btn btn-primary btn-block"><b>社团成员</b></a>
+                <li class="list-group-item">
+                 
+              <a href="#" class="btn btn-success btn-block"><b>社团聊天室</b></a>
+                </li>
+              </ul>
+
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+          
+          
+          
+          <!-- About Me Box -->
+          
+          <!-- /.box -->
+        </div>
+    	
+    	
+    	
+    	
+    	<div class="col-md-3">
+          <!-- Widget: user widget style 1 -->
+          <div class="box box-widget widget-user">
+            <!-- Add the bg color to the header using any of the bg-* classes -->
+            <div class="widget-user-header bg-aqua-active">
+              <h3 class="widget-user-username">王二麻子</h3>
+              <h5 class="widget-user-desc">Founder &amp; CEO</h5>
+            </div>
+            <div class="widget-user-image">
+              <img class="img-circle" src="../dist/img/user1-128x128.jpg" alt="User Avatar">
+            </div>
+            <div class="box-footer">
+              <div class="row">
+                <div class="col-sm-6 border-right">
+                  <div class="description-block">
+                    <span class="description-text"><a href="#">关注</a> </span>
+                  </div>
+                  <!-- /.description-block -->
+                </div>
+                <!-- /.col -->
+                <div class="col-sm-6 border-right">
+                  <div class="description-block">
+                    <span class="description-text"><a href="#">加为好友</a> </span>
+                  </div>
+                  <!-- /.description-block -->
+                </div>
+                <!-- /.col -->
+                
+                <!-- /.col -->
+              </div>
+              <!-- /.row -->
+            </div>
+          </div>
+          <!-- /.widget-user -->
+        </div>
+        
+        
+    
+    	<div class="col-md-3">
+          <!-- Widget: user widget style 1 -->
+          <div class="box box-widget widget-user">
+            <!-- Add the bg color to the header using any of the bg-* classes -->
+            <div class="widget-user-header bg-aqua-active">
+              <h3 class="widget-user-username">王二麻子</h3>
+              <h5 class="widget-user-desc">Founder &amp; CEO</h5>
+            </div>
+            <div class="widget-user-image">
+              <img class="img-circle" src="../dist/img/user1-128x128.jpg" alt="User Avatar">
+            </div>
+            <div class="box-footer">
+              <div class="row">
+                <div class="col-sm-6 border-right">
+                  <div class="description-block">
+                    <span class="description-text"><a href="#">关注</a> </span>
+                  </div>
+                  <!-- /.description-block -->
+                </div>
+                <!-- /.col -->
+                <div class="col-sm-6 border-right">
+                  <div class="description-block">
+                    <span class="description-text"><a href="#">加为好友</a> </span>
+                  </div>
+                  <!-- /.description-block -->
+                </div>
+                <!-- /.col -->
+                
+                <!-- /.col -->
+              </div>
+              <!-- /.row -->
+            </div>
+          </div>
+          <!-- /.widget-user -->
+        </div>
+        
+        <div class="col-md-3">
+          <!-- Widget: user widget style 1 -->
+          <div class="box box-widget widget-user">
+            <!-- Add the bg color to the header using any of the bg-* classes -->
+            <div class="widget-user-header bg-aqua-active">
+              <h3 class="widget-user-username">Alexander Pierce</h3>
+              <h5 class="widget-user-desc">Founder &amp; CEO</h5>
+            </div>
+            <div class="widget-user-image">
+              <img class="img-circle" src="../dist/img/user1-128x128.jpg" alt="User Avatar">
+            </div>
+            <div class="box-footer">
+              <div class="row">
+                <div class="col-sm-4 border-right">
+                  <div class="description-block">
+                    <h5 class="description-header">3,200</h5>
+                    <span class="description-text">SALES</span>
+                  </div>
+                  <!-- /.description-block -->
+                </div>
+                <!-- /.col -->
+                <div class="col-sm-4 border-right">
+                  <div class="description-block">
+                    <h5 class="description-header">13,000</h5>
+                    <span class="description-text">FOLLOWERS</span>
+                  </div>
+                  <!-- /.description-block -->
+                </div>
+                <!-- /.col -->
+                <div class="col-sm-4">
+                  <div class="description-block">
+                    <h5 class="description-header">35</h5>
+                    <span class="description-text">PRODUCTS</span>
+                  </div>
+                  <!-- /.description-block -->
+                </div>
+                <!-- /.col -->
+              </div>
+              <!-- /.row -->
+            </div>
+          </div>
+          <!-- /.widget-user -->
+        </div>
+        
+        
+        
+        
+        <div class="col-md-3">
+          <!-- Widget: user widget style 1 -->
+          <div class="box box-widget widget-user">
+            <!-- Add the bg color to the header using any of the bg-* classes -->
+            <div class="widget-user-header bg-aqua-active">
+              <h3 class="widget-user-username">Alexander Pierce</h3>
+              <h5 class="widget-user-desc">Founder &amp; CEO</h5>
+            </div>
+            <div class="widget-user-image">
+              <img class="img-circle" src="../dist/img/user1-128x128.jpg" alt="User Avatar">
+            </div>
+            <div class="box-footer">
+              <div class="row">
+                <div class="col-sm-4 border-right">
+                  <div class="description-block">
+                    <h5 class="description-header">3,200</h5>
+                    <span class="description-text">SALES</span>
+                  </div>
+                  <!-- /.description-block -->
+                </div>
+                <!-- /.col -->
+                <div class="col-sm-4 border-right">
+                  <div class="description-block">
+                    <h5 class="description-header">13,000</h5>
+                    <span class="description-text">FOLLOWERS</span>
+                  </div>
+                  <!-- /.description-block -->
+                </div>
+                <!-- /.col -->
+                <div class="col-sm-4">
+                  <div class="description-block">
+                    <h5 class="description-header">35</h5>
+                    <span class="description-text">PRODUCTS</span>
+                  </div>
+                  <!-- /.description-block -->
+                </div>
+                <!-- /.col -->
+              </div>
+              <!-- /.row -->
+            </div>
+          </div>
+          <!-- /.widget-user -->
+        </div>
+        
+        
+        
+        <div class="col-md-3">
+          <!-- Widget: user widget style 1 -->
+          <div class="box box-widget widget-user">
+            <!-- Add the bg color to the header using any of the bg-* classes -->
+            <div class="widget-user-header bg-aqua-active">
+              <h3 class="widget-user-username">Alexander Pierce</h3>
+              <h5 class="widget-user-desc">Founder &amp; CEO</h5>
+            </div>
+            <div class="widget-user-image">
+              <img class="img-circle" src="../dist/img/user1-128x128.jpg" alt="User Avatar">
+            </div>
+            <div class="box-footer">
+              <div class="row">
+                <div class="col-sm-4 border-right">
+                  <div class="description-block">
+                    <h5 class="description-header">3,200</h5>
+                    <span class="description-text">SALES</span>
+                  </div>
+                  <!-- /.description-block -->
+                </div>
+                <!-- /.col -->
+                <div class="col-sm-4 border-right">
+                  <div class="description-block">
+                    <h5 class="description-header">13,000</h5>
+                    <span class="description-text">FOLLOWERS</span>
+                  </div>
+                  <!-- /.description-block -->
+                </div>
+                <!-- /.col -->
+                <div class="col-sm-4">
+                  <div class="description-block">
+                    <h5 class="description-header">35</h5>
+                    <span class="description-text">PRODUCTS</span>
+                  </div>
+                  <!-- /.description-block -->
+                </div>
+                <!-- /.col -->
+              </div>
+              <!-- /.row -->
+            </div>
+          </div>
+          <!-- /.widget-user -->
+        </div>
+        
+        
+        
+        
+        <div class="col-md-3">
+          <!-- Widget: user widget style 1 -->
+          <div class="box box-widget widget-user">
+            <!-- Add the bg color to the header using any of the bg-* classes -->
+            <div class="widget-user-header bg-aqua-active">
+              <h3 class="widget-user-username">Alexander Pierce</h3>
+              <h5 class="widget-user-desc">Founder &amp; CEO</h5>
+            </div>
+            <div class="widget-user-image">
+              <img class="img-circle" src="../dist/img/user1-128x128.jpg" alt="User Avatar">
+            </div>
+            <div class="box-footer">
+              <div class="row">
+                <div class="col-sm-4 border-right">
+                  <div class="description-block">
+                    <h5 class="description-header">3,200</h5>
+                    <span class="description-text">SALES</span>
+                  </div>
+                  <!-- /.description-block -->
+                </div>
+                <!-- /.col -->
+                <div class="col-sm-4 border-right">
+                  <div class="description-block">
+                    <h5 class="description-header">13,000</h5>
+                    <span class="description-text">FOLLOWERS</span>
+                  </div>
+                  <!-- /.description-block -->
+                </div>
+                <!-- /.col -->
+                <div class="col-sm-4">
+                  <div class="description-block">
+                    <h5 class="description-header">35</h5>
+                    <span class="description-text">PRODUCTS</span>
+                  </div>
+                  <!-- /.description-block -->
+                </div>
+                <!-- /.col -->
+              </div>
+              <!-- /.row -->
+            </div>
+          </div>
+          <!-- /.widget-user -->
+        </div>
+        
+        
+        
+        <div class="col-md-3">
+          <!-- Widget: user widget style 1 -->
+          <div class="box box-widget widget-user">
+            <!-- Add the bg color to the header using any of the bg-* classes -->
+            <div class="widget-user-header bg-aqua-active">
+              <h3 class="widget-user-username">Alexander Pierce</h3>
+              <h5 class="widget-user-desc">Founder &amp; CEO</h5>
+            </div>
+            <div class="widget-user-image">
+              <img class="img-circle" src="../dist/img/user1-128x128.jpg" alt="User Avatar">
+            </div>
+            <div class="box-footer">
+              <div class="row">
+                <div class="col-sm-4 border-right">
+                  <div class="description-block">
+                    <h5 class="description-header">3,200</h5>
+                    <span class="description-text">SALES</span>
+                  </div>
+                  <!-- /.description-block -->
+                </div>
+                <!-- /.col -->
+                <div class="col-sm-4 border-right">
+                  <div class="description-block">
+                    <h5 class="description-header">13,000</h5>
+                    <span class="description-text">FOLLOWERS</span>
+                  </div>
+                  <!-- /.description-block -->
+                </div>
+                <!-- /.col -->
+                <div class="col-sm-4">
+                  <div class="description-block">
+                    <h5 class="description-header">35</h5>
+                    <span class="description-text">PRODUCTS</span>
+                  </div>
+                  <!-- /.description-block -->
+                </div>
+                <!-- /.col -->
+              </div>
+              <!-- /.row -->
+            </div>
+          </div>
+          <!-- /.widget-user -->
+        </div>
+        
+        
+        
+        
+        <div class="col-md-3">
+          <!-- Widget: user widget style 1 -->
+          <div class="box box-widget widget-user">
+            <!-- Add the bg color to the header using any of the bg-* classes -->
+            <div class="widget-user-header bg-aqua-active">
+              <h3 class="widget-user-username">Alexander Pierce</h3>
+              <h5 class="widget-user-desc">Founder &amp; CEO</h5>
+            </div>
+            <div class="widget-user-image">
+              <img class="img-circle" src="../dist/img/user1-128x128.jpg" alt="User Avatar">
+            </div>
+            <div class="box-footer">
+              <div class="row">
+                <div class="col-sm-4 border-right">
+                  <div class="description-block">
+                    <h5 class="description-header">3,200</h5>
+                    <span class="description-text">SALES</span>
+                  </div>
+                  <!-- /.description-block -->
+                </div>
+                <!-- /.col -->
+                <div class="col-sm-4 border-right">
+                  <div class="description-block">
+                    <h5 class="description-header">13,000</h5>
+                    <span class="description-text">FOLLOWERS</span>
+                  </div>
+                  <!-- /.description-block -->
+                </div>
+                <!-- /.col -->
+                <div class="col-sm-4">
+                  <div class="description-block">
+                    <h5 class="description-header">35</h5>
+                    <span class="description-text">PRODUCTS</span>
+                  </div>
+                  <!-- /.description-block -->
+                </div>
+                <!-- /.col -->
+              </div>
+              <!-- /.row -->
+            </div>
+          </div>
+          <!-- /.widget-user -->
+        </div>
+        
+        
+        
+        
+        <div class="col-md-3">
+          <!-- Widget: user widget style 1 -->
+          <div class="box box-widget widget-user">
+            <!-- Add the bg color to the header using any of the bg-* classes -->
+            <div class="widget-user-header bg-aqua-active">
+              <h3 class="widget-user-username">Alexander Pierce</h3>
+              <h5 class="widget-user-desc">Founder &amp; CEO</h5>
+            </div>
+            <div class="widget-user-image">
+              <img class="img-circle" src="../dist/img/user1-128x128.jpg" alt="User Avatar">
+            </div>
+            <div class="box-footer">
+              <div class="row">
+                <div class="col-sm-4 border-right">
+                  <div class="description-block">
+                    <h5 class="description-header">3,200</h5>
+                    <span class="description-text">SALES</span>
+                  </div>
+                  <!-- /.description-block -->
+                </div>
+                <!-- /.col -->
+                <div class="col-sm-4 border-right">
+                  <div class="description-block">
+                    <h5 class="description-header">13,000</h5>
+                    <span class="description-text">FOLLOWERS</span>
+                  </div>
+                  <!-- /.description-block -->
+                </div>
+                <!-- /.col -->
+                <div class="col-sm-4">
+                  <div class="description-block">
+                    <h5 class="description-header">35</h5>
+                    <span class="description-text">PRODUCTS</span>
+                  </div>
+                  <!-- /.description-block -->
+                </div>
+                <!-- /.col -->
+              </div>
+              <!-- /.row -->
+            </div>
+          </div>
+          <!-- /.widget-user -->
+        </div>
+        
+        
+        
+        
+        
+    </div>
+
+         </section>
+
+</div>
+</div>
+	</body>
+</html>
